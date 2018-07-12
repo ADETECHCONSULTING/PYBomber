@@ -4,14 +4,13 @@ import player
 from pygame.locals import *
 
 pygame.init()
-maxWidth = 600
-maxHeight = 600
+maxWidth = 480
+maxHeight = 427
 
-window = pygame.display.set_mode((maxWidth,maxHeight))
+window = pygame.display.set_mode((maxWidth, maxHeight))
 
 # Create the surface and pass in a tuple with its length and width
-board = pygame.Surface((maxWidth, maxHeight))
-board.fill((122, 205, 185))
+board = pygame.image.load("backgroundarena.png")
 rect = board.get_rect()
 window.blit(board, (0, 0))
 pygame.display.flip()
@@ -22,6 +21,7 @@ player = player.Player()
 
 #exit manager
 running = True
+clock = pygame.time.Clock()
 
 while running:
     # for loop through the event queue
@@ -36,9 +36,11 @@ while running:
             running = False
 
     pressed_keys = pygame.key.get_pressed()
-
+    window.blit(board, (0, 0))
     player.update(pressed_keys)
-
-    window.blit(player.surf, (400, 300))
-    pygame.display.flip()
+    player.draw(window)
+    # window.draw(player.surf, (400, 300))
+    pygame.display.update()
+    # pygame.display.flip()
+    clock.tick(40)
 
