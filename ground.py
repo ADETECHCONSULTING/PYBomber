@@ -11,5 +11,5 @@ class Ground (square.Square):
         super(Ground, self).__init__(x,y)
         self.x = x
         self.y = y
-        self.background = pygame.image.load("ground.jpg").convert()
+        self.background = pygame.image.load("./resources/ground.jpg").convert()
         window.blit(self.background, (x, y))

@@ -1,6 +1,6 @@
 import pygame
 import ground
-import hurdle
+import rock
 from array import *
 import random
 from pygame.locals import *
@@ -10,7 +10,7 @@ class Board (object):
         self.width = width
         self.height = height
         # Create the surface and pass in a tuple with its length and width
-        self.surface = pygame.image.load("backgroundarena.png")
+        self.surface = pygame.image.load("./resources/backgroundarena.png")
         self.rect = self.surface.get_rect()
         window.blit(self.surface, (0, 0))
         self.squares = []
@@ -32,10 +32,10 @@ class Board (object):
     def createHurdles(self, window):
         for rowGround in self.squares:
             for colGround in rowGround:
-                chanceHurdle = random.randint(1,20)
+                chanceRock = random.randint(1,20)
                 #a ajouter : function qui permet de checker qu'un obsctacle ne soit pas dans un coin
-                if(chanceHurdle == 5):
-                    colGround = hurdle.Hurdle(colGround.x, colGround.y, window)
+                if(chanceRock == 5):
+                    colGround = rock.Rock(colGround.x, colGround.y, window)
 
 
 

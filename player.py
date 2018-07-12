@@ -7,7 +7,7 @@ class Player(pygame.sprite.Sprite):
 
     def __init__(self):
         super(Player, self).__init__()
-        self.surf = pygame.image.load("player_1.png")
+        self.surf = pygame.image.load("./resources/player_1.png")
         self.player1W = self.surf.get_width()
         self.player1H = self.surf.get_height()
         self.rect = self.surf.get_rect()
