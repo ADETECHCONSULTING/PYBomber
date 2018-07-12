@@ -1,5 +1,6 @@
 import pygame
 import ground
+import player
 from pygame.locals import *
 
 pygame.init()
@@ -16,8 +17,7 @@ window.blit(board, (0, 0))
 pygame.display.flip()
 
 
-
-
+player = player.Player()
 
 
 #exit manager
@@ -35,4 +35,10 @@ while running:
         elif event.type == QUIT:
             running = False
 
+    pressed_keys = pygame.key.get_pressed()
+
+    player.update(pressed_keys)
+
+    window.blit(player.surf, (400, 300))
+    pygame.display.flip()
 
