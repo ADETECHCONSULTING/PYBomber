@@ -120,3 +120,8 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+#Project specific
+.idea/PYbomberman.iml
+.idea/misc.xml
+.idea/workspace.xml
