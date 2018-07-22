@@ -1,5 +1,5 @@
 import pygame
-import ground
+import bombe
 import board
 import player
 from pygame.locals import *
@@ -9,6 +9,11 @@ maxWidth = 440
 maxHeight = 440
 
 window = pygame.display.set_mode((maxWidth, maxHeight))
+
+bombX = 0
+bombY = 0
+
+bomb = None
 
 board = board.Board(maxWidth, maxHeight, window)
 walls = board.createBoard(window)
@@ -37,6 +42,12 @@ while running:
     board.blitBoard(window)
     board.blitBreakableWalls(window)
     pressed_keys = pygame.key.get_pressed()
+    if pressed_keys[pygame.K_SPACE] and bomb is None:
+        x = player.x()
+        y = player.y()
+        bomb = bombe.Bomb(x, y, window)
+    elif bomb is not None:
+        bomb.draw(window)
     player.update(pressed_keys)
     player.draw(window)
     pygame.display.update()

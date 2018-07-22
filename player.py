@@ -1,4 +1,5 @@
 import pygame
+import bombe
 
 from pygame.locals import *
 
@@ -53,28 +54,11 @@ class Player(pygame.sprite.Sprite):
                 if dy < 0:  # Moving up; Hit the bottom side of the wall
                     self.rect.top = wall.bottom
 
-    def _set_x(self, x):
-        if x < 0:
-            self.rect.x = 0
-        if x > 440 - self.player1W:
-            self.rect.x = 440 - self.player1W
-        self.rect.x = x
+    def x(self):
+        return self.rect.x
 
-    def _get_x(self):
-        return self._x
-
-    def _set_y(self, y):
-        if y < 0:
-            self.rect.y = 0
-        if y > 440 - self.player1H:
-            self.rect.y = 440 - self.player1H
-        self.rect.y = y
-
-    def _get_y(self):
-        return self._y
-
-    x = property(_get_x, _set_x)
-    y = property(_get_y, _set_y)
+    def y(self):
+        return self.rect.y
 
     def draw(self, surface):
         """ Draw on surface """
