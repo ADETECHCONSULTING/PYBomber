@@ -5,18 +5,17 @@ import player
 from pygame.locals import *
 
 pygame.init()
-maxWidth = 480
-maxHeight = 427
+maxWidth = 440
+maxHeight = 440
 
 window = pygame.display.set_mode((maxWidth, maxHeight))
 
 board = board.Board(maxWidth, maxHeight, window)
-board.createSquares(window)
-board.createHurdles(window)
+walls = board.createBoard(window)
 pygame.display.flip()
 
 
-player = player.Player()
+player = player.Player(walls)
 
 
 #exit manager
@@ -35,12 +34,11 @@ while running:
         elif event.type == QUIT:
             running = False
 
+    board.blitBoard(window)
+    board.blitBreakableWalls(window)
     pressed_keys = pygame.key.get_pressed()
-    window.blit(board.surface, (0, 0))
     player.update(pressed_keys)
     player.draw(window)
-    # window.draw(player.surf, (400, 300))
     pygame.display.update()
-    # pygame.display.flip()
     clock.tick(40)
 
